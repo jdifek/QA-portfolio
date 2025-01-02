@@ -6,16 +6,41 @@
 	color-scheme: dark;
 }
 
+/* Включить вертикальный слайдер */
 .swiper {
-	width: 100%;
-	height: 100%;
+	height: 500px;
 }
 
-.swiper-slide {
-	/* Center slide text vertically */
+.swiper-pagination {
+	position: absolute;
+	height: 200px;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+/* Стили для точек */
+.swiper-pagination-bullet {
+	width: 12px;
+	height: 12px;
+	background-color: #9ca3af; /* Серый цвет для обычных точек */
+	border-radius: 50%;
+	margin: 8px; /* Расстояние между точками */
+	opacity: 0.7;
+	transition: background-color 0.3s, transform 0.3s;
+}
+
+.swiper-pagination-bullet-active {
+	background-color: #ffffff; /* Белый цвет для активной точки */
+	transform: scale(1.2); /* Увеличение активной точки */
+	opacity: 1;
+}
+
+/* Убедитесь, что слайдер работает корректно на мобильных устройствах */
+@media (max-width: 768px) {
+	.swiper {
+		height: auto; /* Высота автоматически подстраивается */
+	}
 }
 
 body {
@@ -28,10 +53,16 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	background: radial-gradient(
 		circle,
+		rgba(45, 42, 51, 1) 0%,
+		rgba(34, 31, 40, 1) 34%,
+		rgba(20, 18, 29, 1) 52%
+	);
+	/* background: radial-gradient(
+		circle,
 		rgba(75, 40, 60, 0.8) 15%,
 		rgba(50, 25, 45, 1) 50%,
 		rgba(30, 15, 35, 1) 100%
-	);
+	); */
 	background-size: 300% 300%;
 	animation: triangle-path 15s ease-in-out infinite;
 }
