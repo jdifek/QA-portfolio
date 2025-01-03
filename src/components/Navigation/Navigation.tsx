@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
-import React from 'react'
+import React, { useState } from 'react'
 import { useMobileModal } from '../../helpers/hooks/useMobileModal'
 import { INavigationProps } from '../../types'
 import { NAV_LINKS } from './nav-links.data'
@@ -9,6 +9,8 @@ const Navigation: React.FC<INavigationProps> = ({
 	activeSection,
 	setActiveSection,
 }) => {
+	const [hoveredSection, setHoveredSection] = useState<string | null>(null)
+
 	const { isMenuOpen, setIsMenuOpen, toggleMenu, handleClickOutside } =
 		useMobileModal()
 
@@ -30,24 +32,39 @@ const Navigation: React.FC<INavigationProps> = ({
 							<motion.button
 								key={item.id}
 								onClick={() => setActiveSection(item.id)}
+								onMouseEnter={() => setHoveredSection(item.id)}
+								onMouseLeave={() => setHoveredSection(null)}
 								className={`relative text-lg transition-colors duration-300 ${
-									activeSection === item.id
-										? 'text-white font-semibold'
-										: 'text-gray-400/70'
+									activeSection === item.id ? 'text-white' : 'text-gray-400/70'
 								}`}
 								whileHover={{ scale: 1.05 }}
 								whileTap={{ scale: 0.95 }}
 							>
 								{item.label}
 
-								{/* Неоновая линия */}
-								<span
-									className={`absolute left-0 bottom-[-4px] h-[3px] w-full rounded-full transition-all duration-300 ${
-										activeSection === item.id
-											? 'bg-blue-500 shadow-[0px_0px_8px_#3b82f6] animate-glow'
-											: 'bg-transparent'
-									}`}
-								></span>
+								{/* Неоновая линия (анимируется при изменении) */}
+								<AnimatePresence>
+									{(hoveredSection === item.id ||
+										activeSection === item.id) && (
+										<motion.div
+											layoutId='neon-underline'
+											className='absolute left-0 bottom-[-4px] h-[4px] w-full rounded-full 
+                     bg-gradient-to-r from-blue-700 to-blue-800 
+                     shadow-[0px_0px_16px_#3b82f6, 0px_0px_32px_#3b82f6] animate-glow'
+											initial={{ opacity: 0, scaleX: 0.8 }}
+											animate={{
+												opacity: 1,
+												scaleX: 1,
+												transition: { duration: 0.3, ease: 'easeInOut' },
+											}}
+											exit={{
+												opacity: 0,
+												scaleX: 0.8,
+												transition: { duration: 0.3, ease: 'easeInOut' },
+											}}
+										/>
+									)}
+								</AnimatePresence>
 							</motion.button>
 						))}
 					</div>
