@@ -25,7 +25,7 @@ const Experience = () => {
 							<motion.div
 								initial={{ opacity: 0, y: 20 }}
 								animate={{ opacity: 1, y: 0 }}
-								className='grid md:grid-cols-2 gap-12 items-center h-full max-md:max-w-[460px]'
+								className='grid md:grid-cols-2 gap-12 items-center h-full cursor-grab'
 							>
 								{/* Project Details */}
 								<div>
@@ -36,7 +36,7 @@ const Experience = () => {
 										className='relative text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-gray-100 to-gray-500 text-transparent bg-clip-text'
 									>
 										{/* Синий квадрат позади текста */}
-										<div className='absolute left-0 top-1/2 transform -translate-y-1/2 bg-blue-800 w-28 h-48 -z-10' />
+										<div className='absolute left-0 top-24 transform -translate-y-1/2 bg-blue-800 w-14 h-48 -z-10' />
 										{project.title}
 									</motion.h2>
 									<motion.p
@@ -60,20 +60,29 @@ const Experience = () => {
 									</div>
 								</div>
 								{/* 3D Visualization */}
-								{/* <motion.div
+								<motion.div
 									key={project.id}
 									initial={{ opacity: 0 }}
 									animate={{ opacity: 1 }}
 									transition={{ duration: 0.5 }}
-									className='h-[400px]'
+									className=''
 								>
-									<Canvas>
-										<ambientLight intensity={0.5} />
-										<directionalLight position={[2, 2, 2]} />
-										<Model scale={0.5} position={[0, -0.5, 0]} />
+									{/* <Canvas camera={{ position: [0, 0, 5] }}>
+										<ambientLight intensity={0.7} />
+										<pointLight
+											position={[10, 10, 10]}
+											intensity={1}
+											color='#60a5fa'
+										/>
+										<pointLight
+											position={[-10, -10, -10]}
+											intensity={0.5}
+											color='#3b82f6'
+										/>
+										<Cube />
 										<OrbitControls enableZoom={false} />
-									</Canvas>
-								</motion.div> */}
+									</Canvas> */}
+								</motion.div>
 							</motion.div>
 						</SwiperSlide>
 					))}

@@ -30,15 +30,24 @@ const Navigation: React.FC<INavigationProps> = ({
 							<motion.button
 								key={item.id}
 								onClick={() => setActiveSection(item.id)}
-								className={`text-lg transition-colors ${
+								className={`relative text-lg transition-colors duration-300 ${
 									activeSection === item.id
-										? 'text-white font-semibold hover:text-blue-400'
-										: 'text-gray-400/70 hover:text-blue-400'
+										? 'text-white font-semibold'
+										: 'text-gray-400/70'
 								}`}
 								whileHover={{ scale: 1.05 }}
 								whileTap={{ scale: 0.95 }}
 							>
 								{item.label}
+
+								{/* Неоновая линия */}
+								<span
+									className={`absolute left-0 bottom-[-4px] h-[3px] w-full rounded-full transition-all duration-300 ${
+										activeSection === item.id
+											? 'bg-blue-500 shadow-[0px_0px_8px_#3b82f6] animate-glow'
+											: 'bg-transparent'
+									}`}
+								></span>
 							</motion.button>
 						))}
 					</div>

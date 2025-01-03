@@ -13,8 +13,8 @@ const About: React.FC = () => {
 					className='max-w-4xl mx-auto'
 				>
 					<div className='relative text-center mb-16'>
-						<h1 className='text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-100 to-gray-500 text-transparent bg-clip-text'>
-							<div className='absolute left-0 top-1/2 md:top-40 transform -translate-y-1/2 bg-blue-800 w-28 md:w-52 h-56 md:h-96 -z-10' />
+						<h1 className='text-3xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-100 to-gray-500 text-transparent bg-clip-text h-[80px]'>
+							<div className='absolute left-0 top-1/2 md:top-40 transform -translate-y-1/2 bg-blue-800 w-24 h-56 md:h-96 -z-10' />
 							QA Automation Engineer
 						</h1>
 						<p className='text-xl text-gray-100 mb-8'>

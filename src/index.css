@@ -120,3 +120,20 @@ body {
 		max-height: 500px; /* Высота автоматически подстраивается */
 	}
 }
+
+/* неоновая линия в навигации */
+@keyframes glow {
+	0% {
+		box-shadow: 0px 0px 8px #3b82f6;
+	}
+	50% {
+		box-shadow: 0px 0px 14px #3b82f6;
+	}
+	100% {
+		box-shadow: 0px 0px 8px #3b82f6;
+	}
+}
+
+.animate-glow {
+	animation: glow 1.5s infinite alternate;
+}

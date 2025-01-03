@@ -13,7 +13,7 @@ const Contact: React.FC = () => {
 				>
 					<div className='text-center mb-16'>
 						<h1 className='relative text-4xl md:text-6xl font-bold mb-6'>
-							<div className='absolute left-14 md:left-14 top-24 md:top-40 transform -translate-y-1/2 bg-blue-800 w-28 md:w-52 h-56 md:h-96 -z-10' />
+							<div className='absolute left-14 md:left-14 top-24 md:top-40 transform -translate-y-1/2 bg-blue-800 w-24 h-56 md:h-96 -z-10' />
 							Get in Touch
 						</h1>
 						<p className='text-xl text-gray-300'>
