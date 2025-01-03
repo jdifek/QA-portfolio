@@ -37,8 +37,6 @@ const Navigation: React.FC<INavigationProps> = ({
 								className={`relative text-lg transition-colors duration-300 ${
 									activeSection === item.id ? 'text-white' : 'text-gray-400/70'
 								}`}
-								whileHover={{ scale: 1.05 }}
-								whileTap={{ scale: 0.95 }}
 							>
 								{item.label}
 
