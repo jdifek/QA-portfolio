@@ -3,10 +3,12 @@ import About from './components/About'
 import BgLines from './components/BgLines'
 import Contact from './components/Contact'
 import Experience from './components/Experience'
+import IntroScreen from './components/IntroScreen'
 import Navigation from './components/Navigation'
 
 function App() {
 	const [activeSection, setActiveSection] = useState('about')
+	const [showIntro, setShowIntro] = useState(true)
 
 	const renderSection = () => {
 		switch (activeSection) {
@@ -22,14 +24,19 @@ function App() {
 	}
 
 	return (
-		// <div className="bg-black min-h-screen">
-		<div className='min-h-screen'>
-			<BgLines />
-			<Navigation
-				activeSection={activeSection}
-				setActiveSection={setActiveSection}
-			/>
-			{renderSection()}
+		<div>
+			{showIntro ? (
+				<IntroScreen onFinish={() => setShowIntro(false)} />
+			) : (
+				<>
+					<BgLines />
+					<Navigation
+						activeSection={activeSection}
+						setActiveSection={setActiveSection}
+					/>
+					{renderSection()}
+				</>
+			)}
 		</div>
 	)
 }

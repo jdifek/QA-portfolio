@@ -15,16 +15,16 @@ const Contact: React.FC = () => {
 	]
 
 	return (
-		// <section className="min-h-screen bg-gradient-to-b from-black to-red-950 text-white flex items-center">
-		<section className='min-h-screen  text-white flex items-center'>
-			<div className='container mx-auto px-6 py-20'>
+		<section className=' text-white flex items-center'>
+			<div className='container mx-auto px-6 py-20 mt-20'>
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
 					className='max-w-3xl mx-auto'
 				>
 					<div className='text-center mb-16'>
-						<h1 className='text-4xl md:text-6xl font-bold mb-6'>
+						<h1 className='relative text-4xl md:text-6xl font-bold mb-6'>
+							<div className='absolute left-14 md:left-14 top-24 md:top-40 transform -translate-y-1/2 bg-blue-800 w-28 md:w-52 h-56 md:h-96 -z-10' />
 							Get in Touch
 						</h1>
 						<p className='text-xl text-gray-300'>
@@ -46,16 +46,16 @@ const Contact: React.FC = () => {
 										href={item.href}
 										target='_blank'
 										rel='noopener noreferrer'
-										className='flex items-center p-4 bg-black/30 rounded-lg border border-red-800/30 hover:border-red-500/50 transition-all hover:transform hover:translate-x-2'
+										className='flex items-center p-4 border border-gray-600 text-gray-100  backdrop-blur-md rounded-lg hover:border-blue-400/50hover:shadow-lg hover:shadow-blue-500/10 transition-all hover:transform hover:translate-x-2'
 									>
-										<item.icon className='w-6 h-6 text-red-500 mr-4' />
+										<item.icon className='w-6 h-6 text-blue-500 mr-4' />
 										<span className='text-gray-300 group-hover:text-white transition-colors'>
 											{item.text}
 										</span>
 									</a>
 								) : (
-									<div className='flex items-center p-4 bg-black/30 rounded-lg border border-red-800/30'>
-										<item.icon className='w-6 h-6 text-red-500 mr-4' />
+									<div className='flex items-center p-4 border border-gray-600 text-gray-100  backdrop-blur-md rounded-lg'>
+										<item.icon className='w-6 h-6 text-blue-500 mr-4' />
 										<span className='text-gray-300'>{item.text}</span>
 									</div>
 								)}

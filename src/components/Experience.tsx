@@ -1,13 +1,9 @@
-import { OrbitControls } from '@react-three/drei'
-import { Canvas } from '@react-three/fiber'
 import { motion } from 'framer-motion'
-import React, { Suspense } from 'react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Model } from './Model'
 
 const projects = [
 	{
@@ -36,16 +32,8 @@ const projects = [
 	},
 ]
 
-const Experience: React.FC = () => {
-	// const [selectedProject, setSelectedProject] = React.useState(projects[0])
-
-	// const renderShape = () => {
-	// 	return <Model />
-	// }
-
+const Experience = () => {
 	return (
-		// <section className="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#334155] text-white py-20">
-
 		<section className='min-h-screen text-white py-20 flex items-center'>
 			<div className='container mx-auto px-6 relative'>
 				<Swiper
@@ -63,7 +51,7 @@ const Experience: React.FC = () => {
 							<motion.div
 								initial={{ opacity: 0, y: 20 }}
 								animate={{ opacity: 1, y: 0 }}
-								className='grid md:grid-cols-2 gap-12 items-center'
+								className='grid md:grid-cols-2 gap-12 items-center h-full max-md:max-w-[460px]'
 							>
 								{/* Project Details */}
 								<div>
@@ -71,8 +59,10 @@ const Experience: React.FC = () => {
 										key={`title-${project.id}`}
 										initial={{ opacity: 0, x: 20 }}
 										animate={{ opacity: 1, x: 0 }}
-										className='text-3xl font-bold mb-6 bg-gradient-to-r from-blue-300 to-blue-500 text-transparent bg-clip-text'
+										className='relative text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-gray-100 to-gray-500 text-transparent bg-clip-text'
 									>
+										{/* Синий квадрат позади текста */}
+										<div className='absolute left-0 top-1/2 transform -translate-y-1/2 bg-blue-800 w-28 h-48 -z-10' />
 										{project.title}
 									</motion.h2>
 									<motion.p
@@ -80,15 +70,15 @@ const Experience: React.FC = () => {
 										initial={{ opacity: 0, x: 20 }}
 										animate={{ opacity: 1, x: 0 }}
 										transition={{ delay: 0.1 }}
-										className='text-blue-100 text-xl mb-6'
+										className='text-gray-50 text-xl mb-8'
 									>
 										{project.description}
 									</motion.p>
-									<div className='flex flex-wrap gap-2 mb-8'>
+									<div className='flex flex-wrap gap-3 mb-8'>
 										{project.technologies.map(tech => (
 											<span
 												key={tech}
-												className='px-4 py-2 bg-blue-900/50 rounded-full text-lg border border-blue-500/30 text-blue-200'
+												className='px-4 py-2 text-lg border border-gray-600 text-gray-100  backdrop-blur-md rounded-lg'
 											>
 												{tech}
 											</span>
@@ -96,21 +86,20 @@ const Experience: React.FC = () => {
 									</div>
 								</div>
 								{/* 3D Visualization */}
-								<motion.div
+								{/* <motion.div
 									key={project.id}
 									initial={{ opacity: 0 }}
 									animate={{ opacity: 1 }}
 									transition={{ duration: 0.5 }}
 									className='h-[400px]'
 								>
-									<Canvas camera={{ position: [0, 0, 1] }}>
-										<ambientLight intensity={0.7} />
+									<Canvas>
+										<ambientLight intensity={0.5} />
+										<directionalLight position={[2, 2, 2]} />
+										<Model scale={0.5} position={[0, -0.5, 0]} />
 										<OrbitControls enableZoom={false} />
-										<Suspense fallback={null}>
-											<Model />
-										</Suspense>
 									</Canvas>
-								</motion.div>
+								</motion.div> */}
 							</motion.div>
 						</SwiperSlide>
 					))}

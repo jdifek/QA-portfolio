@@ -28,19 +28,19 @@ const skills = [
 
 const About: React.FC = () => {
 	return (
-		// <section className="min-h-screen bg-gradient-to-br from-[#1a0f1f] via-[#2d1321] to-[#3d1f2f] text-white flex items-center py-20">
-		<section className='min-h-screen text-white flex items-center py-20'>
-			<div className='container mx-auto px-6'>
+		<section className=' text-white flex items-center py-20'>
+			<div className='container mx-auto px-6 mt-20'>
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
 					className='max-w-4xl mx-auto'
 				>
-					<div className='text-center mb-16'>
-						<h1 className='text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-300 to-red-500 text-transparent bg-clip-text'>
+					<div className='relative text-center mb-16'>
+						<h1 className='text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-100 to-gray-500 text-transparent bg-clip-text'>
+							<div className='absolute left-0 top-1/2 md:top-40 transform -translate-y-1/2 bg-blue-800 w-28 md:w-52 h-56 md:h-96 -z-10' />
 							QA Automation Engineer
 						</h1>
-						<p className='text-xl text-red-100 mb-8'>
+						<p className='text-xl text-gray-100 mb-8'>
 							Passionate about creating robust test automation frameworks and
 							ensuring software quality
 						</p>
@@ -58,7 +58,7 @@ const About: React.FC = () => {
 						transition={{ delay: 0.4 }}
 						className='mt-16 text-center'
 					>
-						<h2 className='text-2xl font-bold mb-4 text-red-300'>About Me</h2>
+						<h2 className='text-2xl font-bold mb-4 text-gray-100'>About Me</h2>
 						<p className='text-red-100 leading-relaxed'>
 							With over 5 years of experience in software testing and
 							automation, I specialize in building scalable test frameworks and
