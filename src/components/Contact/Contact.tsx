@@ -1,22 +1,11 @@
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, MapPin } from 'lucide-react'
 import React from 'react'
+import { CONTACT_LINKS } from './contact-links.data'
 
 const Contact: React.FC = () => {
-	const contactInfo = [
-		{
-			icon: Mail,
-			text: 'contact@example.com',
-			href: 'mailto:contact@example.com',
-		},
-		{ icon: Linkedin, text: 'LinkedIn Profile', href: 'https://linkedin.com' },
-		{ icon: Github, text: 'GitHub Profile', href: 'https://github.com' },
-		{ icon: MapPin, text: 'Remote / Worldwide', href: null },
-	]
-
 	return (
-		<section className=' text-white flex items-center'>
-			<div className='container mx-auto px-6 py-20 mt-20'>
+		<section className='py-14'>
+			<div className='container mx-auto px-6 py-20'>
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
@@ -33,7 +22,7 @@ const Contact: React.FC = () => {
 					</div>
 
 					<div className='grid gap-6 md:grid-cols-2'>
-						{contactInfo.map((item, index) => (
+						{CONTACT_LINKS.map((item, index) => (
 							<motion.div
 								key={index}
 								initial={{ opacity: 0, x: -20 }}
@@ -46,7 +35,7 @@ const Contact: React.FC = () => {
 										href={item.href}
 										target='_blank'
 										rel='noopener noreferrer'
-										className='flex items-center p-4 border border-gray-600 text-gray-100  backdrop-blur-md rounded-lg hover:border-blue-400/50hover:shadow-lg hover:shadow-blue-500/10 transition-all hover:transform hover:translate-x-2'
+										className='flex items-center p-4 border border-gray-600 text-gray-100  backdrop-blur-md rounded-lg hover:border-blue-400/50 hover:border-blue-400/50hover:shadow-lg hover:shadow-blue-500/10 hover:shadow-lg transition-all hover:transform hover:translate-x-2 '
 									>
 										<item.icon className='w-6 h-6 text-blue-500 mr-4' />
 										<span className='text-gray-300 group-hover:text-white transition-colors'>
@@ -54,7 +43,7 @@ const Contact: React.FC = () => {
 										</span>
 									</a>
 								) : (
-									<div className='flex items-center p-4 border border-gray-600 text-gray-100  backdrop-blur-md rounded-lg'>
+									<div className='flex items-center p-4 border border-gray-600 text-gray-100  backdrop-blur-md rounded-lg hover:border-blue-400/50 transition-all hover:shadow-lg hover:shadow-blue-500/10'>
 										<item.icon className='w-6 h-6 text-blue-500 mr-4' />
 										<span className='text-gray-300'>{item.text}</span>
 									</div>

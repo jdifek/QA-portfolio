@@ -18,19 +18,6 @@ const IntroScreen = ({ onFinish }: { onFinish: () => void }) => {
 			exit={{ opacity: 0 }}
 			transition={{ duration: 0.8 }}
 		>
-			<p className='text-base sm:text-lg mb-4 text-center px-4'>
-				This pen is outdated. Check out the{' '}
-				<a
-					href='https://codepen.io/DirkWeber/pen/eyxbmq'
-					target='_blank'
-					rel='noopener noreferrer'
-					className='text-blue-400 text-lg underline'
-				>
-					Universal Glitch
-				</a>{' '}
-				which is newer and more compatible.
-			</p>
-
 			<svg
 				version='1.1'
 				xmlns='http://www.w3.org/2000/svg'

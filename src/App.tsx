@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import About from './components/About'
+import About from './components/About/About'
 import BgLines from './components/BgLines'
-import Contact from './components/Contact'
-import Experience from './components/Experience'
+import Contact from './components/Contact/Contact'
+import Experience from './components/Experience/Experience'
 import IntroScreen from './components/IntroScreen'
-import Navigation from './components/Navigation'
+import Navigation from './components/Navigation/Navigation'
 
 function App() {
 	const [activeSection, setActiveSection] = useState('about')

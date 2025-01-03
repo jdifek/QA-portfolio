@@ -4,37 +4,11 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-
-const projects = [
-	{
-		id: 1,
-		title: 'E-commerce Testing Framework',
-		description:
-			'Developed and maintained an end-to-end testing framework for a large e-commerce platform.',
-		technologies: ['Cypress', 'TypeScript', 'GitHub Actions'],
-		// shape: 'cube',
-	},
-	{
-		id: 2,
-		title: 'API Testing Suite',
-		description:
-			'Created comprehensive API testing suite with automated performance testing.',
-		technologies: ['Postman', 'Newman', 'Jenkins', 'JMeter'],
-		// shape: 'sphere',
-	},
-	{
-		id: 3,
-		title: 'Mobile App Testing',
-		description:
-			'Implemented automated testing for iOS and Android applications.',
-		technologies: ['Appium', 'Java', 'TestNG', 'BrowserStack'],
-		// shape: 'torus',
-	},
-]
+import { PROJECT_ITEMS } from './experience-items.data'
 
 const Experience = () => {
 	return (
-		<section className='min-h-screen text-white py-20 flex items-center'>
+		<section className='py-14 '>
 			<div className='container mx-auto px-6 relative'>
 				<Swiper
 					direction='vertical'
@@ -46,7 +20,7 @@ const Experience = () => {
 					modules={[Navigation, Pagination]}
 					className='mb-20'
 				>
-					{projects.map(project => (
+					{PROJECT_ITEMS.map(project => (
 						<SwiperSlide key={project.id}>
 							<motion.div
 								initial={{ opacity: 0, y: 20 }}

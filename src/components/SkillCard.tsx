@@ -1,15 +1,8 @@
 import { motion } from 'framer-motion'
-import { LucideIcon } from 'lucide-react'
 import React from 'react'
+import { ISkillCardProps } from '../types'
 
-interface SkillCardProps {
-	icon: LucideIcon
-	title: string
-	description: string
-	index: number
-}
-
-export const SkillCard: React.FC<SkillCardProps> = ({
+export const SkillCard: React.FC<ISkillCardProps> = ({
 	icon: Icon,
 	title,
 	description,

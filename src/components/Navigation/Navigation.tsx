@@ -1,41 +1,19 @@
 import { motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import React from 'react'
+import { useMobileModal } from '../../helpers/hooks/useMobileModal'
+import { INavigationProps } from '../../types'
+import { NAV_LINKS } from './nav-links.data'
 
-interface NavigationProps {
-	activeSection: string
-	setActiveSection: (section: string) => void
-}
-
-const Navigation: React.FC<NavigationProps> = ({
+const Navigation: React.FC<INavigationProps> = ({
 	activeSection,
 	setActiveSection,
 }) => {
-	const [isMenuOpen, setIsMenuOpen] = React.useState(false)
-
-	const handleClickOutside = (e: React.MouseEvent) => {
-		const menu = e.target as HTMLElement
-		if (menu.classList.contains('menu-modal')) {
-			setIsMenuOpen(false)
-			document.body.style.overflow = 'auto'
-		}
-	}
-
-	const toggleMenu = () => {
-		setIsMenuOpen(!isMenuOpen)
-		if (!isMenuOpen) {
-			document.body.style.overflow = 'hidden'
-		}
-	}
-
-	const navItems = [
-		{ id: 'about', label: 'About Me' },
-		{ id: 'experience', label: 'Experience' },
-		{ id: 'contact', label: 'Contact' },
-	]
+	const { isMenuOpen, setIsMenuOpen, toggleMenu, handleClickOutside } =
+		useMobileModal()
 
 	return (
-		<header className='fixed top-0 w-full z-50 mb-10'>
+		<header className='w-full'>
 			<nav className='container mx-auto px-6 py-4'>
 				<div className='flex justify-between items-center'>
 					<motion.div
@@ -48,7 +26,7 @@ const Navigation: React.FC<NavigationProps> = ({
 
 					{/* Desktop Navigation */}
 					<div className='hidden md:flex space-x-8'>
-						{navItems.map(item => (
+						{NAV_LINKS.map(item => (
 							<motion.button
 								key={item.id}
 								onClick={() => setActiveSection(item.id)}
@@ -79,7 +57,7 @@ const Navigation: React.FC<NavigationProps> = ({
 				{/* Mobile Menu */}
 				{isMenuOpen && (
 					<motion.div
-						className='menu-modal fixed inset-0 bg-gray-800 bg-opacity-90 z-50 flex justify-center items-center'
+						className='menu-modal h-screen fixed inset-0 bg-gray-800 bg-opacity-90 z-50 flex justify-center items-center'
 						onClick={handleClickOutside}
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
@@ -87,7 +65,7 @@ const Navigation: React.FC<NavigationProps> = ({
 					>
 						{/* Меню */}
 						<motion.div
-							className='bg-gray-800 w-full h-full flex flex-col items-center gap-6 space-y-6 p-6 relative'
+							className='bg-gray-800 w-full overflow-y-auto h-screen flex flex-col items-center gap-6 space-y-6 p-6 relative'
 							initial={{ scale: 0.9 }}
 							animate={{ scale: 1 }}
 							exit={{ scale: 0.9 }}
@@ -99,7 +77,7 @@ const Navigation: React.FC<NavigationProps> = ({
 							>
 								<X size={32} />
 							</button>
-							{navItems.map(item => (
+							{NAV_LINKS.map(item => (
 								<div>
 									<motion.button
 										key={item.id}

@@ -1,35 +1,12 @@
 import { motion } from 'framer-motion'
 import React from 'react'
-import { icons } from './icons'
-import { SkillCard } from './SkillCard'
-
-const skills = [
-	{
-		icon: icons.test,
-		title: 'Test Automation',
-		description: 'Expertise in Selenium, Cypress, and Playwright',
-	},
-	{
-		icon: icons.code,
-		title: 'Programming',
-		description: 'JavaScript/TypeScript, Python, Java',
-	},
-	{
-		icon: icons.bug,
-		title: 'Quality Assurance',
-		description: 'Test planning, execution, and reporting',
-	},
-	{
-		icon: icons.workflow,
-		title: 'CI/CD',
-		description: 'Jenkins, GitHub Actions, Docker',
-	},
-]
+import { SkillCard } from '../SkillCard'
+import { SKILL_ITEMS } from './skill-items.data'
 
 const About: React.FC = () => {
 	return (
-		<section className=' text-white flex items-center py-20'>
-			<div className='container mx-auto px-6 mt-20'>
+		<section className='py-14'>
+			<div className='container mx-auto px-6'>
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
@@ -47,7 +24,7 @@ const About: React.FC = () => {
 					</div>
 
 					<div className='grid md:grid-cols-2 gap-8'>
-						{skills.map((skill, index) => (
+						{SKILL_ITEMS.map((skill, index) => (
 							<SkillCard key={index} {...skill} index={index} />
 						))}
 					</div>
