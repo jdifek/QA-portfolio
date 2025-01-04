@@ -4,21 +4,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, useGLTF } from "@react-three/drei";
 import { PROJECT_ITEMS } from "./experience-items.data";
-
-const SplineModel = ({
-  position = [0, 0, 0],
-  path,
-}: {
-  position?: [number, number, number];
-  path: string;
-}) => {
-  const { scene } = useGLTF(path); // Use useGLTF hook to load the model
-
-  return <primitive object={scene} position={position} scale={15} />;
-};
+import Spline from "@splinetool/react-spline";
 
 const Experience = () => {
   return (
@@ -81,21 +68,9 @@ const Experience = () => {
                   transition={{ duration: 0.5 }}
                   className="h-[400px]"
                 >
-                  <Canvas camera={{ position: [0, 0, 5] }}>
-                    <ambientLight intensity={0.7} />
-                    <pointLight
-                      position={[10, 10, 10]}
-                      intensity={1}
-                      color="#60a5fa"
-                    />
-                    <pointLight
-                      position={[-10, -10, -10]}
-                      intensity={0.5}
-                      color="#3b82f6"
-                    />
-                    <SplineModel position={[0, -1.6, 0]} path={project.shape} />
-                    <OrbitControls enableZoom={false} />
-                  </Canvas>
+                  <Spline
+                    scene={project.shape}
+                  />
                 </motion.div>
               </motion.div>
             </SwiperSlide>
