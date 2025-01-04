@@ -66,11 +66,9 @@ const Experience = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
-                  className="h-[400px]"
+                  className="h-[400px] bg-transparent"
                 >
-                  <Spline
-                    scene={project.shape}
-                  />
+                  <Spline scene={project.shape} className="bg-transparent" />
                 </motion.div>
               </motion.div>
             </SwiperSlide>
