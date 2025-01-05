@@ -5,7 +5,7 @@ export const PROJECT_ITEMS = [
     description:
       "Developed and maintained an end-to-end testing framework for a large e-commerce platform.",
     technologies: ["Cypress", "TypeScript", "GitHub Actions"],
-    shape: "/3D_model1.glb",
+    shape: "/cloner_cube_simple_copy.spline",
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ export const PROJECT_ITEMS = [
     description:
       "Created comprehensive API testing suite with automated performance testing.",
     technologies: ["Postman", "Newman", "Jenkins", "JMeter"],
-    shape: "/3D_model2.glb",
+    shape: "/public/red.spline",
   },
   {
     id: 3,
@@ -21,6 +21,6 @@ export const PROJECT_ITEMS = [
     description:
       "Implemented automated testing for iOS and Android applications.",
     technologies: ["Appium", "Java", "TestNG", "BrowserStack"],
-    shape: "/3D_model3.glb",
+    shape: "/public/cliner.spline",
   },
 ];

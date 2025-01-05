@@ -6,18 +6,9 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { PROJECT_ITEMS } from "./experience-items.data";
+import Spline from "@splinetool/react-spline";
 import { Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
-import { Html, useProgress, useGLTF } from "@react-three/drei";
-import ModelWithLOD from "./ModelWithLOD";
-
-function Loader() {
-  const { progress } = useProgress();
-  return <Html center>{Math.round(progress)}% loaded</Html>;
-}
-
-useGLTF.preload("/3D_model.glb");
-useGLTF.preload("/3D_model.glb");
+import './loader.css'
 
 const Experience = () => {
   return (
@@ -40,7 +31,6 @@ const Experience = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="grid md:grid-cols-2 gap-12 items-center h-full cursor-grab"
               >
-                {/* Project Details */}
                 <div>
                   <motion.h2
                     key={`title-${project.id}`}
@@ -71,24 +61,16 @@ const Experience = () => {
                     ))}
                   </div>
                 </div>
-                {/* 3D Visualization */}
                 <motion.div
                   key={project.id}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
-                  className="h-[400px] md:block hidden"
+                  className="h-[400px]"
                 >
-                  <Canvas>
-                    <Suspense fallback={<Loader />}>
-                      <ModelWithLOD
-                        position={[0, -2, 0]}
-                        scale={15}
-                        modelPath={project.shape}
-                      />
-                    </Suspense>
-                    <OrbitControls />
-                  </Canvas>
+                  <Suspense fallback={<div className="loader"></div>}>
+                    <Spline scene={project.shape} />
+                  </Suspense>
                 </motion.div>
               </motion.div>
             </SwiperSlide>
