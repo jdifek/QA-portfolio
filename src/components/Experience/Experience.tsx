@@ -1,3 +1,4 @@
+import { OrbitControls } from "@react-three/drei";
 import { motion } from "framer-motion";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -5,7 +6,18 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { PROJECT_ITEMS } from "./experience-items.data";
-import Spline from "@splinetool/react-spline";
+import { Suspense } from "react";
+import { Canvas } from "@react-three/fiber";
+import { Html, useProgress, useGLTF } from "@react-three/drei";
+import ModelWithLOD from "./ModelWithLOD";
+
+function Loader() {
+  const { progress } = useProgress();
+  return <Html center>{Math.round(progress)}% loaded</Html>;
+}
+
+useGLTF.preload("/3D_model.glb");
+useGLTF.preload("/3D_model.glb");
 
 const Experience = () => {
   return (
@@ -36,7 +48,6 @@ const Experience = () => {
                     animate={{ opacity: 1, x: 0 }}
                     className="relative text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-gray-100 to-gray-500 text-transparent bg-clip-text"
                   >
-                    {/* Blue square behind the text */}
                     <div className="absolute left-0 top-24 transform -translate-y-1/2 bg-blue-800 w-14 h-48 -z-10" />
                     {project.title}
                   </motion.h2>
@@ -66,9 +77,18 @@ const Experience = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
-                  className="h-[400px] bg-transparent"
+                  className="h-[400px] md:block hidden"
                 >
-                  <Spline scene={project.shape} className="bg-transparent" />
+                  <Canvas>
+                    <Suspense fallback={<Loader />}>
+                      <ModelWithLOD
+                        position={[0, -2, 0]}
+                        scale={15}
+                        modelPath={project.shape}
+                      />
+                    </Suspense>
+                    <OrbitControls />
+                  </Canvas>
                 </motion.div>
               </motion.div>
             </SwiperSlide>
