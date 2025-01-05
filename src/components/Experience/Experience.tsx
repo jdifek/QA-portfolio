@@ -6,6 +6,8 @@ import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { PROJECT_ITEMS } from "./experience-items.data";
 import Spline from "@splinetool/react-spline";
+import { Suspense } from "react";
+import './loader.css'
 
 const Experience = () => {
   return (
@@ -28,7 +30,6 @@ const Experience = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="grid md:grid-cols-2 gap-12 items-center h-full cursor-grab"
               >
-                {/* Project Details */}
                 <div>
                   <motion.h2
                     key={`title-${project.id}`}
@@ -36,7 +37,6 @@ const Experience = () => {
                     animate={{ opacity: 1, x: 0 }}
                     className="relative text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-gray-100 to-gray-500 text-transparent bg-clip-text"
                   >
-                    {/* Blue square behind the text */}
                     <div className="absolute left-0 top-24 transform -translate-y-1/2 bg-blue-800 w-14 h-48 -z-10" />
                     {project.title}
                   </motion.h2>
@@ -60,15 +60,16 @@ const Experience = () => {
                     ))}
                   </div>
                 </div>
-                {/* 3D Visualization */}
                 <motion.div
                   key={project.id}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
-                  className="h-[400px] bg-transparent"
+                  className="h-[400px]"
                 >
-                  <Spline scene={project.shape} className="bg-transparent" />
+                  <Suspense fallback={<div className="loader"></div>}>
+                    <Spline scene={project.shape} />
+                  </Suspense>
                 </motion.div>
               </motion.div>
             </SwiperSlide>
