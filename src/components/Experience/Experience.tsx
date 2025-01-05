@@ -1,14 +1,47 @@
-
+import { Suspense, useRef } from "react";
 import { motion } from "framer-motion";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { PROJECT_ITEMS } from "./experience-items.data";
-import Spline from "@splinetool/react-spline";
-import { Suspense } from "react";
-import './loader.css'
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, useGLTF } from "@react-three/drei";
+import "./loader.css";
+
+function Model({ url, scale }) {
+  const { scene } = useGLTF(url);
+  const meshRef = useRef();
+
+  useFrame(() => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y += 0.01;
+    }
+  });
+
+  return (
+    <primitive
+      object={scene}
+      scale={scale} // Используем переданный проп scale
+      position={[0, 1, 0]}
+      ref={meshRef}
+    />
+  );
+}
+
+function Scene({ url, scale }) {
+  return (
+    <Canvas>
+      <ambientLight intensity={0.5} />
+      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+      <pointLight position={[-10, -10, -10]} />
+      <Suspense fallback={null}>
+        <Model url={url} scale={scale} />
+        <OrbitControls enableZoom={true} enablePan={true} enableRotate={true} />
+      </Suspense>
+    </Canvas>
+  );
+}
 
 const Experience = () => {
   return (
@@ -24,7 +57,7 @@ const Experience = () => {
           modules={[Navigation, Pagination]}
           className="mb-20"
         >
-          {PROJECT_ITEMS.map((project) => (
+          {PROJECT_ITEMS.map((project, index) => (
             <SwiperSlide key={project.id}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -66,11 +99,12 @@ const Experience = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
-                  className="h-[400px]"
+                  className="h-[600px]"
                 >
-                  <Suspense fallback={<div className="loader"></div>}>
-                    <Spline scene={project.shape} />
-                  </Suspense>
+                  <Scene
+                    url={project.modelUrl}
+                    scale={index === 1 || index === 2 ? [7, 7, 7] : [0.9, 0.9, 0.9]} // Увеличиваем вторую и третью модели в 7 раз, первую немного уменьшаем
+                  />
                 </motion.div>
               </motion.div>
             </SwiperSlide>
@@ -82,3 +116,30 @@ const Experience = () => {
 };
 
 export default Experience;
+
+export const PROJECT_ITEMS = [
+  {
+    id: 1,
+    title: "E-commerce Testing Framework",
+    description:
+      "Developed and maintained an end-to-end testing framework for a large e-commerce platform.",
+    technologies: ["Cypress", "TypeScript", "GitHub Actions"],
+    modelUrl: "/mechanical_keyboard_-_aesthetic.glb",
+  },
+  {
+    id: 2,
+    title: "API Testing Suite",
+    description:
+      "Created comprehensive API testing suite with automated performance testing.",
+    technologies: ["Postman", "Newman", "Jenkins", "JMeter"],
+    modelUrl: "/28e9373b8550488bac26b3c35ac2225a.glb",
+  },
+  {
+    id: 3,
+    title: "Mobile App Testing",
+    description:
+      "Implemented automated testing for iOS and Android applications.",
+    technologies: ["Appium", "Java", "TestNG", "BrowserStack"],
+    modelUrl: "/asus_rog_zephyrus_g14_2024.glb",
+  },
+];
