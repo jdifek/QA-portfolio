@@ -6,37 +6,38 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, useGLTF } from "@react-three/drei";
+import { Center, OrbitControls, useGLTF } from "@react-three/drei";
 import "./loader.css";
-
-function Model({ url, scale }) {
-  const { scene } = useGLTF(url);
+function Model({ url, scale, rotation }) {
+  const { scene } = useGLTF(url); // Загружаем GLTF модель
   const meshRef = useRef();
 
   useFrame(() => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += 0.01;
+      meshRef.current.rotation.y += 0.01; // Вращение вокруг оси Y
     }
   });
 
   return (
-    <primitive
-      object={scene}
-      scale={scale} // Используем переданный проп scale
-      position={[0, 1, 0]}
-      ref={meshRef}
-    />
+    <Center>
+      <primitive
+        object={scene}
+        scale={scale} // Масштабирование модели
+        rotation={rotation} // Применяем вращение
+        ref={meshRef}
+      />
+    </Center>
   );
 }
 
-function Scene({ url, scale }) {
+function Scene({ url, scale, rotation }) {
   return (
     <Canvas>
       <ambientLight intensity={0.5} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
       <pointLight position={[-10, -10, -10]} />
       <Suspense fallback={null}>
-        <Model url={url} scale={scale} />
+        <Model url={url} scale={scale} rotation={rotation} />
         <OrbitControls enableZoom={true} enablePan={true} enableRotate={true} />
       </Suspense>
     </Canvas>
@@ -57,58 +58,64 @@ const Experience = () => {
           modules={[Navigation, Pagination]}
           className="mb-20"
         >
-          {PROJECT_ITEMS.map((project, index) => (
-            <SwiperSlide key={project.id}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="grid md:grid-cols-2 gap-12 items-center h-full cursor-grab"
-              >
-                <div>
-                  <motion.h2
-                    key={`title-${project.id}`}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="relative text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-gray-100 to-gray-500 text-transparent bg-clip-text"
-                  >
-                    <div className="absolute left-0 top-24 transform -translate-y-1/2 bg-blue-800 w-14 h-48 -z-10" />
-                    {project.title}
-                  </motion.h2>
-                  <motion.p
-                    key={`desc-${project.id}`}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 }}
-                    className="text-gray-50 text-xl mb-8"
-                  >
-                    {project.description}
-                  </motion.p>
-                  <div className="flex flex-wrap gap-3 mb-8">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-4 py-2 text-lg border border-gray-600 text-gray-100 backdrop-blur-md rounded-lg"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+          {PROJECT_ITEMS.map((project, index) => {
+            // Разворачиваем первую модель лицом
+            const rotation = index === 0 ? [90, Math.PI / 6, 660] : [0, 0, 0]; // Для первой модели, вращаем на 180 градусов по оси Y
+
+            return (
+              <SwiperSlide key={project.id}>
                 <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                  className="h-[600px]"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="grid md:grid-cols-2 gap-12 items-center h-full cursor-grab"
                 >
-                  <Scene
-                    url={project.modelUrl}
-                    scale={index === 1 || index === 2 ? [7, 7, 7] : [0.9, 0.9, 0.9]} // Увеличиваем вторую и третью модели в 7 раз, первую немного уменьшаем
-                  />
+                  <div>
+                    <motion.h2
+                      key={`title-${project.id}`}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      className="relative text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-gray-100 to-gray-500 text-transparent bg-clip-text"
+                    >
+                      <div className="absolute left-0 top-24 transform -translate-y-1/2 bg-blue-800 w-14 h-48 -z-10" />
+                      {project.title}
+                    </motion.h2>
+                    <motion.p
+                      key={`desc-${project.id}`}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 }}
+                      className="text-gray-50 text-xl mb-8"
+                    >
+                      {project.description}
+                    </motion.p>
+                    <div className="flex flex-wrap gap-3 mb-8">
+                      {project.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-4 py-2 text-lg border border-gray-600 text-gray-100 backdrop-blur-md rounded-lg"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="h-[600px]"
+                  >
+                    <Scene
+                      url={project.modelUrl}
+                      scale={index === 1 || index === 2 ? [7, 7, 7] : [0.9, 0.9, 0.9]} // Увеличиваем вторую и третью модели в 7 раз, первую немного уменьшаем
+                      rotation={rotation} // Применяем вращение для первой модели
+                    />
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-            </SwiperSlide>
-          ))}
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
       </div>
     </section>
