@@ -56,7 +56,7 @@ const Experience = () => {
 						clickable: true,
 					}}
 					modules={[Navigation, Pagination]}
-					className='mb-20'
+					className='mb-12'
 				>
 					{PROJECT_ITEMS.map((project, index) => {
 						// Разворачиваем первую модель лицом
@@ -67,14 +67,14 @@ const Experience = () => {
 								<motion.div
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
-									className='grid md:grid-cols-2 gap-12 items-center h-full cursor-grab'
+									className='grid md:grid-cols-2 gap-6 items-center h-full cursor-grab'
 								>
-									<div>
+									<div className='h-full xl:h-auto p-5 md:p-0'>
 										<motion.h2
 											key={`title-${project.id}`}
 											initial={{ opacity: 0, x: 20 }}
 											animate={{ opacity: 1, x: 0 }}
-											className='relative text-lg md:text-xl font-bold mb-6 bg-gradient-to-r from-gray-100 to-gray-500 text-transparent bg-clip-text'
+											className='relative text-lg  lg:text-3xl md:text-2xl font-bold mb-4 bg-gradient-to-r from-gray-100 to-gray-500 text-transparent bg-clip-text'
 										>
 											<div className='absolute left-0 top-24 transform -translate-y-1/2 bg-blue-800 w-14 h-48 -z-10' />
 											{project.title}
@@ -84,7 +84,7 @@ const Experience = () => {
 											initial={{ opacity: 0, x: 20 }}
 											animate={{ opacity: 1, x: 0 }}
 											transition={{ delay: 0.1 }}
-											className='text-gray-50 text-sm mb-6 whitespace-pre-line'
+											className='text-gray-50 text-base mb-4 whitespace-pre-line'
 										>
 											{project.description
 												.split('•')
@@ -95,7 +95,7 @@ const Experience = () => {
 													</span>
 												))}
 										</motion.p>
-										<div className='flex flex-wrap gap-3 mb-8'>
+										<div className='flex flex-wrap gap-3 mb-4'>
 											{project.technologies.map(tech => (
 												<span
 													key={tech}
