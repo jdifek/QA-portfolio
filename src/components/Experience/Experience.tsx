@@ -74,7 +74,7 @@ const Experience = () => {
 											key={`title-${project.id}`}
 											initial={{ opacity: 0, x: 20 }}
 											animate={{ opacity: 1, x: 0 }}
-											className='relative text-2xl md:text-3xl font-bold mb-6 bg-gradient-to-r from-gray-100 to-gray-500 text-transparent bg-clip-text'
+											className='relative text-lg md:text-xl font-bold mb-6 bg-gradient-to-r from-gray-100 to-gray-500 text-transparent bg-clip-text'
 										>
 											<div className='absolute left-0 top-24 transform -translate-y-1/2 bg-blue-800 w-14 h-48 -z-10' />
 											{project.title}
@@ -84,7 +84,7 @@ const Experience = () => {
 											initial={{ opacity: 0, x: 20 }}
 											animate={{ opacity: 1, x: 0 }}
 											transition={{ delay: 0.1 }}
-											className='text-gray-50 text-lg mb-8 whitespace-pre-line'
+											className='text-gray-50 text-sm mb-6 whitespace-pre-line'
 										>
 											{project.description
 												.split('•')
@@ -99,7 +99,7 @@ const Experience = () => {
 											{project.technologies.map(tech => (
 												<span
 													key={tech}
-													className='px-4 py-2 text-lg border border-gray-600 text-gray-100 backdrop-blur-md rounded-lg'
+													className='px-4 py-2 text-sm border border-gray-600 text-gray-100 backdrop-blur-md rounded-lg'
 												>
 													{tech}
 												</span>
