@@ -38,11 +38,11 @@ function Scene({ url, scale, rotation }) {
 			<pointLight position={[-10, -10, -10]} />
 			<Suspense fallback={null}>
 				<Model url={url} scale={scale} rotation={rotation} />
-				<OrbitControls enableZoom={true} enablePan={true} enableRotate={true} />
 			</Suspense>
 		</Canvas>
 	)
 }
+
 
 const Experience = () => {
 	return (
