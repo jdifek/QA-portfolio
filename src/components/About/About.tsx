@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowDownFromLine, ArrowUpFromLine } from 'lucide-react'
 import { useMobileModal } from '../../helpers/hooks/useMobileModal'
+import ShinyText from '../ShinyText'
 import { SkillCard } from '../SkillCard'
 import { SKILL_ITEMS } from './skill-items.data'
 
@@ -16,10 +17,13 @@ const About: React.FC = () => {
 					className='max-w-4xl mx-auto'
 				>
 					<div className='relative text-center mb-16'>
-						<h1 className='text-3xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-100 to-gray-500 text-transparent bg-clip-text h-[80px]'>
-							<div className='absolute left-0 top-1/2 md:top-40 transform -translate-y-1/2 bg-blue-800 w-24 h-56 md:h-96 -z-10' />
-							QA Automation Engineer
-						</h1>
+						<div className='absolute left-0 top-1/2 md:top-40 transform -translate-y-1/2 bg-blue-800 w-24 h-56 md:h-96 -z-10' />
+						<ShinyText
+							text='QA Automation Engineer'
+							disabled={false}
+							speed={3}
+							className='text-3xl md:text-6xl font-bold mb-6 h-[80px]'
+						/>
 						<p className='text-xl text-gray-100 mb-8'>
 							Passionate about creating robust test automation frameworks and
 							ensuring software quality
@@ -64,7 +68,7 @@ const About: React.FC = () => {
 							animate={{ y: 0 }}
 							exit={{ y: '100%' }}
 							transition={{ duration: 0.5, ease: 'easeInOut' }}
-							className='bg-gray-800 text-white w-full max-w-4xl p-6 rounded-t-lg shadow-lg overflow-y-auto  max-md:h-full'
+							className='backdrop-blur-md border  border-gray-600 text-white w-full max-w-4xl p-6 rounded-t-lg shadow-lg overflow-y-auto  max-md:h-full'
 						>
 							<div className='relative'>
 								<h2 className='text-2xl font-bold mb-4 text-gray-100 text-center mt-5'>

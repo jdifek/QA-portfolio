@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import About from './components/About/About'
+import AnimatedBackground from './components/AnimatedBackground'
 import BgLines from './components/BgLines'
 import Contact from './components/Contact/Contact'
 import Experience from './components/Experience/Experience'
@@ -28,14 +29,15 @@ function App() {
 			{showIntro ? (
 				<IntroScreen onFinish={() => setShowIntro(false)} />
 			) : (
-				<>
+				<div className='bg-image'>
+					<AnimatedBackground />
 					<BgLines />
 					<Navigation
 						activeSection={activeSection}
 						setActiveSection={setActiveSection}
 					/>
 					{renderSection()}
-				</>
+				</div>
 			)}
 		</div>
 	)

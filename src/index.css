@@ -20,30 +20,25 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background: radial-gradient(
-		circle,
-		rgba(45, 42, 51, 1) 0%,
-		rgba(34, 31, 40, 1) 34%,
-		rgba(20, 18, 29, 1) 52%
-	);
-	background-size: 300% 300%;
-	animation: triangle-path 15s ease-in-out infinite;
 }
 
-/* Анимация движения градиента по траектории треугольника */
-@keyframes triangle-path {
-	0% {
-		background-position: 100% 0%; /* Правый верхний угол */
-	}
-	33% {
-		background-position: 50% 50%; /* Центр */
-	}
-	66% {
-		background-position: 100% 100%; /* Правый нижний угол */
-	}
-	100% {
-		background-position: 100% 0%; /* Возвращение в правый верхний угол */
-	}
+.bg-image {
+	min-height: 100vh;
+	background-image: url('/space.jpg');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.bg-image::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3); /* Черный цвет с прозрачностью */
+	z-index: -1; /* Слой будет под содержимым */
 }
 
 /* Стили для контейнера линий */

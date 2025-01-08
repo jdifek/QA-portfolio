@@ -1,6 +1,5 @@
-import { Center, OrbitControls, useGLTF } from '@react-three/drei'
+import { Center, useGLTF } from '@react-three/drei'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { motion } from 'framer-motion'
 import { Suspense, useRef } from 'react'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -43,7 +42,6 @@ function Scene({ url, scale, rotation }) {
 	)
 }
 
-
 const Experience = () => {
 	return (
 		<section className='py-14'>
@@ -64,26 +62,17 @@ const Experience = () => {
 
 						return (
 							<SwiperSlide key={project.id}>
-								<motion.div
-									initial={{ opacity: 0, y: 20 }}
-									animate={{ opacity: 1, y: 0 }}
-									className='grid md:grid-cols-2 gap-6 items-center h-full cursor-grab'
-								>
+								<div className='grid md:grid-cols-2 gap-6 items-center h-full cursor-grab'>
 									<div className='h-full xl:h-auto p-5 md:p-0'>
-										<motion.h2
+										<h2
 											key={`title-${project.id}`}
-											initial={{ opacity: 0, x: 20 }}
-											animate={{ opacity: 1, x: 0 }}
 											className='relative text-lg  lg:text-3xl md:text-2xl font-bold mb-4 bg-gradient-to-r from-gray-100 to-gray-500 text-transparent bg-clip-text'
 										>
 											<div className='absolute left-0 top-24 transform -translate-y-1/2 bg-blue-800 w-14 h-48 -z-10' />
 											{project.title}
-										</motion.h2>
-										<motion.p
+										</h2>
+										<p
 											key={`desc-${project.id}`}
-											initial={{ opacity: 0, x: 20 }}
-											animate={{ opacity: 1, x: 0 }}
-											transition={{ delay: 0.1 }}
 											className='text-gray-50 text-base mb-4 whitespace-pre-line'
 										>
 											{project.description
@@ -94,7 +83,7 @@ const Experience = () => {
 														• {sentence.trim()}
 													</span>
 												))}
-										</motion.p>
+										</p>
 										<div className='flex flex-wrap gap-3 mb-4'>
 											{project.technologies.map(tech => (
 												<span
@@ -106,13 +95,7 @@ const Experience = () => {
 											))}
 										</div>
 									</div>
-									<motion.div
-										key={project.id}
-										initial={{ opacity: 0 }}
-										animate={{ opacity: 1 }}
-										transition={{ duration: 0.5 }}
-										className='h-[600px]'
-									>
+									<div className='h-[600px]'>
 										<Scene
 											url={project.modelUrl}
 											scale={
@@ -120,8 +103,8 @@ const Experience = () => {
 											} // Увеличиваем вторую и третью модели в 7 раз, первую немного уменьшаем
 											rotation={rotation} // Применяем вращение для первой модели
 										/>
-									</motion.div>
-								</motion.div>
+									</div>
+								</div>
 							</SwiperSlide>
 						)
 					})}
