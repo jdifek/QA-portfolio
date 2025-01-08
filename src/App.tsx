@@ -29,7 +29,7 @@ function App() {
 			{showIntro ? (
 				<IntroScreen onFinish={() => setShowIntro(false)} />
 			) : (
-				<div className='bg-image'>
+				<div>
 					<AnimatedBackground />
 					<BgLines />
 					<Navigation
