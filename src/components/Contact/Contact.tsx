@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import React from 'react'
+import ShinyText from '../ShinyText'
 import { CONTACT_LINKS } from './contact-links.data'
 
 const Contact: React.FC = () => {
@@ -11,11 +12,14 @@ const Contact: React.FC = () => {
 					animate={{ opacity: 1, y: 0 }}
 					className='max-w-3xl mx-auto'
 				>
-					<div className='text-center mb-16'>
-						<h1 className='relative text-4xl md:text-6xl font-bold mb-6'>
-							<div className='absolute left-14 md:left-14 top-24 md:top-40 transform -translate-y-1/2 bg-blue-800 w-24 h-56 md:h-96 -z-10' />
-							Get in Touch
-						</h1>
+					<div className='relative text-center mb-16'>
+						<ShinyText
+							text='Get in Touch'
+							speed={3}
+							disabled={false}
+							className='tracking-widest text-4xl md:text-6xl font-bold mb-6'
+						/>
+						<div className='absolute left-14 md:left-14 top-24 md:top-40 transform -translate-y-1/2 bg-blue-800 w-24 h-56 md:h-96 -z-10' />
 						<p className='text-xl text-gray-300'>
 							Let's discuss how I can help improve your software testing process
 						</p>

@@ -146,3 +146,10 @@ body {
 .animate-glow {
 	animation: glow 1.5s infinite alternate;
 }
+
+.karla-font {
+	font-family: 'Karla', sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 600;
+	font-style: normal;
+}

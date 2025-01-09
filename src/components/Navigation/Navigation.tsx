@@ -17,24 +17,24 @@ const Navigation: React.FC<INavigationProps> = ({
 	return (
 		<header className='w-full'>
 			<nav className='container mx-auto px-6 py-4'>
-				<div className='flex justify-between md:justify-evenly items-stretch md:items-center mt-5 rounded-full py-3 shadow-2xl shadow-blue-500/10 backdrop-blur-md'>
+				<div className='flex justify-between items-stretch md:items-center mt-5 rounded-full py-3 px-6 backdrop-blur-md'>
 					<motion.div
 						initial={{ opacity: 0, x: -20 }}
 						animate={{ opacity: 1, x: 0 }}
-						className='text-2xl font-bold text-white'
+						className='karla-font text-2xl tracking-[0.20em] uppercase text-white'
 					>
 						Portfolio
 					</motion.div>
 
 					{/* Desktop Navigation */}
-					<div className='hidden md:flex space-x-8'>
+					<div className='hidden md:flex space-x-24'>
 						{NAV_LINKS.map(item => (
 							<motion.button
 								key={item.id}
 								onClick={() => setActiveSection(item.id)}
 								onMouseEnter={() => setHoveredSection(item.id)}
 								onMouseLeave={() => setHoveredSection(null)}
-								className={`relative text-lg transition-colors duration-300 ${
+								className={`relative text-lg uppercase tracking-[0.20em]  transition-colors duration-300 ${
 									activeSection === item.id ? 'text-white' : 'text-gray-400/70'
 								}`}
 							>

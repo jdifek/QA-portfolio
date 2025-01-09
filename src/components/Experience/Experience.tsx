@@ -46,7 +46,7 @@ function Scene({ url, scale, rotation }) {
 const Experience = () => {
 	return (
 		<section className='py-14'>
-			<div className='container mx-auto px-6 relative'>
+			<div className='container mt-6 mx-auto px-6 relative'>
 				<Swiper
 					direction='vertical'
 					spaceBetween={50}
@@ -63,18 +63,26 @@ const Experience = () => {
 
 						return (
 							<SwiperSlide key={project.id}>
-								<div className='grid md:grid-cols-2 gap-6 items-center h-full cursor-grab'>
-									<div className='relative h-full xl:h-auto p-5 md:p-0'>
+								<div
+									className={` grid md:grid-cols-2 gap-6 items-center h-full cursor-grab ${
+										project.id === 3 ? 'mt-0' : 'mt-8'
+									}`}
+								>
+									<div
+										className={`relative p-5 md:p-0 ${
+											project.id === 3 ? 'h-auto' : 'h-full'
+										}`}
+									>
 										<ShinyText
 											text={project.title}
 											disabled={false}
 											speed={3}
-											className='text-lg lg:text-3xl md:text-2xl font-bold mb-4'
+											className='text-lg lg:text-3xl md:text-2xl font-bold mb-6'
 										/>
 										<div className='absolute left-0 top-24 transform -translate-y-1/2 bg-blue-800 w-14 h-48 -z-10' />
 										<p
 											key={`desc-${project.id}`}
-											className='bg-gradient-to-r from-gray-100 to-gray-500 text-transparent bg-clip-text mb-4 whitespace-pre-line text-sm 2xl:text-base'
+											className='bg-gradient-to-r from-gray-100 to-gray-500 text-transparent bg-clip-text mb-4 xl:mb-6 whitespace-pre-line text-sm 2xl:text-lg tracking-widest pl-5'
 										>
 											{project.description
 												.split('•')
@@ -89,7 +97,7 @@ const Experience = () => {
 											{project.technologies.map(tech => (
 												<span
 													key={tech}
-													className='px-4 py-2 text-sm border border-gray-600 text-gray-100 backdrop-blur-md rounded-lg'
+													className='px-4 py-2 text-sm border border-gray-600 text-gray-100 backdrop-blur-md rounded-lg tracking-widest'
 												>
 													{tech}
 												</span>

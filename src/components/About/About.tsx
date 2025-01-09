@@ -22,7 +22,7 @@ const About: React.FC = () => {
 							text='QA Automation Engineer'
 							disabled={false}
 							speed={3}
-							className='text-3xl md:text-6xl font-bold mb-6 h-[80px]'
+							className='tracking-widest text-3xl md:text-6xl font-bold mb-6 h-[80px]'
 						/>
 						<p className='text-xl text-gray-100 mb-8'>
 							Passionate about creating robust test automation frameworks and
