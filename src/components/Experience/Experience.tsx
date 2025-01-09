@@ -6,6 +6,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import ShinyText from '../ShinyText'
 import './loader.css'
 function Model({ url, scale, rotation }) {
 	const { scene } = useGLTF(url) // Загружаем GLTF модель
@@ -63,17 +64,17 @@ const Experience = () => {
 						return (
 							<SwiperSlide key={project.id}>
 								<div className='grid md:grid-cols-2 gap-6 items-center h-full cursor-grab'>
-									<div className='h-full xl:h-auto p-5 md:p-0'>
-										<h2
-											key={`title-${project.id}`}
-											className='relative text-lg  lg:text-3xl md:text-2xl font-bold mb-4 bg-gradient-to-r from-gray-100 to-gray-500 text-transparent bg-clip-text'
-										>
-											<div className='absolute left-0 top-24 transform -translate-y-1/2 bg-blue-800 w-14 h-48 -z-10' />
-											{project.title}
-										</h2>
+									<div className='relative h-full xl:h-auto p-5 md:p-0'>
+										<ShinyText
+											text={project.title}
+											disabled={false}
+											speed={3}
+											className='text-lg lg:text-3xl md:text-2xl font-bold mb-4'
+										/>
+										<div className='absolute left-0 top-24 transform -translate-y-1/2 bg-blue-800 w-14 h-48 -z-10' />
 										<p
 											key={`desc-${project.id}`}
-											className='text-gray-50 text-base mb-4 whitespace-pre-line'
+											className='bg-gradient-to-r from-gray-100 to-gray-500 text-transparent bg-clip-text mb-4 whitespace-pre-line text-sm 2xl:text-base'
 										>
 											{project.description
 												.split('•')

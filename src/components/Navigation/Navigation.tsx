@@ -17,7 +17,7 @@ const Navigation: React.FC<INavigationProps> = ({
 	return (
 		<header className='w-full'>
 			<nav className='container mx-auto px-6 py-4'>
-				<div className='flex justify-between items-center'>
+				<div className='flex justify-between md:justify-evenly items-stretch md:items-center mt-5 rounded-full py-3 shadow-2xl shadow-blue-500/10 backdrop-blur-md'>
 					<motion.div
 						initial={{ opacity: 0, x: -20 }}
 						animate={{ opacity: 1, x: 0 }}
